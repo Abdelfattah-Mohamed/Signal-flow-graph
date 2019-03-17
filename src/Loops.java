@@ -32,7 +32,7 @@ public class Loops {
 		return true;
 	}
 
-	public LinkedList<LinkedList<Integer>> getPaths(boolean[][] graph, int distance) {
+	public void madeLoops(boolean[][] graph, int distance) {
 		LinkedList<Integer> loop = new LinkedList<Integer>();
 		if (distance > 0) {
 			for (int i = 0; i < graph.length; i++) {
@@ -40,6 +40,9 @@ public class Loops {
 				this.dfs(i, i, graph, loop, false);
 			}
 		}
+	}
+
+	public LinkedList<LinkedList<Integer>> getLoops() {
 		return this.loops;
 	}
 }

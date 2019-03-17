@@ -4,6 +4,8 @@ public class Graph {
 
 	private boolean[][] graph;
 	private int[][] gain;
+	private Paths path = new Paths();
+	private Loops loop = new Loops();
 
 	public Graph(int nV) {
 		this.graph = new boolean[nV][nV];
@@ -21,9 +23,14 @@ public class Graph {
 		}
 	}
 
+	public void setLoops_and_Pathes() {
+
+		path.madePathes(this.graph, this.graph.length);
+		loop.madeLoops(this.graph, this.graph.length);
+	}
+
 	public void printPaths() {
-		Paths path = new Paths();
-		LinkedList<LinkedList<Integer>> list = path.getPaths(this.graph, this.graph.length);
+		LinkedList<LinkedList<Integer>> list = path.getPaths();
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).size(); j++) {
 				System.out.print(list.get(i).get(j) + "=>");
@@ -33,14 +40,13 @@ public class Graph {
 	}
 
 	public void printloops() {
-		Loops path = new Loops();
-		LinkedList<LinkedList<Integer>> list = path.getPaths(this.graph, this.graph.length);
+		LinkedList<LinkedList<Integer>> list = loop.getLoops();
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).size(); j++) {
 				System.out.print(list.get(i).get(j) + "=>");
 			}
 			System.out.println();
 		}
-		
+
 	}
 }

@@ -19,7 +19,9 @@ public class Main {
 		graph.addEdge(5, 3, 2);
 		graph.addEdge(5, 4, 2);
 		graph.addEdge(5, 5, 2);
-
+		
+		graph.setLoops_and_Pathes();
+		
 		graph.printPaths();
 		graph.printloops();
 	}

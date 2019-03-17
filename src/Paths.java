@@ -21,12 +21,16 @@ public class Paths {
 		return;
 	}
 
-	public LinkedList<LinkedList<Integer>> getPaths(boolean[][] graph, int distance) {
+	public void madePathes(boolean[][] graph, int distance) {
 		LinkedList<Integer> path = new LinkedList<Integer>();
 		if (distance > 0) {
 			path.add(0);
-			this.dfs(0, distance-1, graph, path);
+			this.dfs(0, distance - 1, graph, path);
 		}
+
+	}
+
+	public LinkedList<LinkedList<Integer>> getPaths() {
 		return this.paths;
 	}
 
