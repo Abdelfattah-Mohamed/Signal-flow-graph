@@ -31,4 +31,16 @@ public class Graph {
 			System.out.println();
 		}
 	}
+
+	public void printloops() {
+		Loops path = new Loops();
+		LinkedList<LinkedList<Integer>> list = path.getPaths(this.graph, this.graph.length);
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < list.get(i).size(); j++) {
+				System.out.print(list.get(i).get(j) + "=>");
+			}
+			System.out.println();
+		}
+		
+	}
 }

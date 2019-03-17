@@ -6,7 +6,7 @@ public class Paths {
 
 	private void dfs(int from, int distance, boolean[][] graph, LinkedList<Integer> path) {
 		if (from == distance) {
-			paths.add((LinkedList<Integer>) path.clone());
+			this.paths.add((LinkedList<Integer>) path.clone());
 			path.removeLast();
 			return;
 		}
