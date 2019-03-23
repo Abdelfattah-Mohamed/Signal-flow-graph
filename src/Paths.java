@@ -1,13 +1,13 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Paths {
 
-	private LinkedList<LinkedList<Integer>> paths = new LinkedList<LinkedList<Integer>>();
+	private ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
 
-	private void dfs(int from, int distance, boolean[][] graph, LinkedList<Integer> path) {
+	private void dfs(int from, int distance, boolean[][] graph, ArrayList<Integer> path) {
 		if (from == distance) {
-			this.paths.add((LinkedList<Integer>) path.clone());
-			path.removeLast();
+			this.paths.add((ArrayList<Integer>) path.clone());
+			path.remove(path.size() - 1);
 			return;
 		}
 		for (int i = from + 1; i < graph.length; i++) {
@@ -17,12 +17,12 @@ public class Paths {
 			}
 
 		}
-		path.removeLast();
+		path.remove(path.size() - 1);
 		return;
 	}
 
 	public void madePathes(boolean[][] graph, int distance) {
-		LinkedList<Integer> path = new LinkedList<Integer>();
+		ArrayList<Integer> path = new ArrayList<Integer>();
 		if (distance > 0) {
 			path.add(0);
 			this.dfs(0, distance - 1, graph, path);
@@ -30,7 +30,7 @@ public class Paths {
 
 	}
 
-	public LinkedList<LinkedList<Integer>> getPaths() {
+	public ArrayList<ArrayList<Integer>> getPaths() {
 		return this.paths;
 	}
 

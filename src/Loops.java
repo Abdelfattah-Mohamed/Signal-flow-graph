@@ -1,13 +1,13 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Loops {
 
-	private LinkedList<LinkedList<Integer>> loops = new LinkedList<LinkedList<Integer>>();
+	private ArrayList<ArrayList<Integer>> loops = new ArrayList<ArrayList<Integer>>();
 
-	private void dfs(int from, int distance, boolean[][] graph, LinkedList<Integer> loop, boolean flag) {
+	private void dfs(int from, int distance, boolean[][] graph, ArrayList<Integer> loop, boolean flag) {
 		if (from == distance && flag) {
-			this.loops.add((LinkedList<Integer>) loop.clone());
-			loop.removeLast();
+			this.loops.add((ArrayList<Integer>) loop.clone());
+			loop.remove(loop.size() - 1);
 			flag = false;
 			return;
 		}
@@ -19,11 +19,11 @@ public class Loops {
 			}
 
 		}
-		loop.removeLast();
+		loop.remove(loop.size() - 1);
 		return;
 	}
 
-	private boolean contain(LinkedList<Integer> loop, int pivot) {
+	private boolean contain(ArrayList<Integer> loop, int pivot) {
 		for (int i = 1; i < loop.size(); i++) {
 			if (pivot == loop.get(i)) {
 				return false;
@@ -33,7 +33,7 @@ public class Loops {
 	}
 
 	public void madeLoops(boolean[][] graph, int distance) {
-		LinkedList<Integer> loop = new LinkedList<Integer>();
+		ArrayList<Integer> loop = new ArrayList<Integer>();
 		if (distance > 0) {
 			for (int i = 0; i < graph.length; i++) {
 				loop.add(i);
@@ -42,7 +42,7 @@ public class Loops {
 		}
 	}
 
-	public LinkedList<LinkedList<Integer>> getLoops() {
+	public ArrayList<ArrayList<Integer>> getLoops() {
 		return this.loops;
 	}
 }

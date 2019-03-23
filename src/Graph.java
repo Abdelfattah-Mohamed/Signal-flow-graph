@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Graph {
 
@@ -6,6 +6,7 @@ public class Graph {
 	private int[][] gain;
 	private Paths path = new Paths();
 	private Loops loop = new Loops();
+	private Non_Touched_loops ntl = new Non_Touched_loops();
 
 	public Graph(int nV) {
 		this.graph = new boolean[nV][nV];
@@ -27,10 +28,11 @@ public class Graph {
 
 		path.madePathes(this.graph, this.graph.length);
 		loop.madeLoops(this.graph, this.graph.length);
+		ntl.madeNonTouchedLoops(loop.getLoops());
 	}
 
 	public void printPaths() {
-		LinkedList<LinkedList<Integer>> list = path.getPaths();
+		ArrayList<ArrayList<Integer>> list = path.getPaths();
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).size(); j++) {
 				System.out.print(list.get(i).get(j) + "=>");
@@ -40,7 +42,7 @@ public class Graph {
 	}
 
 	public void printloops() {
-		LinkedList<LinkedList<Integer>> list = loop.getLoops();
+		ArrayList<ArrayList<Integer>> list = loop.getLoops();
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < list.get(i).size(); j++) {
 				System.out.print(list.get(i).get(j) + "=>");
