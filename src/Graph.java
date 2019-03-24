@@ -7,6 +7,7 @@ public class Graph {
 	private Paths path = new Paths();
 	private Loops loop = new Loops();
 	private Non_Touched_loops ntl = new Non_Touched_loops();
+	private Calc_Delta delta = new Calc_Delta();
 
 	public Graph(int nV) {
 		this.graph = new boolean[nV][nV];
@@ -15,6 +16,10 @@ public class Graph {
 
 	public boolean[][] getGraph() {
 		return this.graph;
+	}
+
+	public int[][] get_gain() {
+		return this.gain;
 	}
 
 	public void addEdge(int f, int t, int gain) {
@@ -26,9 +31,10 @@ public class Graph {
 
 	public void setLoops_and_Pathes() {
 
-		path.madePathes(this.graph, this.graph.length);
-		loop.madeLoops(this.graph, this.graph.length);
-		ntl.madeNonTouchedLoops(loop.getLoops());
+		this.path.madePathes(this.graph, this.graph.length, this.gain);
+		this.loop.madeLoops(this.graph, this.graph.length, this.gain);
+		this.ntl.madeNonTouchedLoops(loop.getLoops(), loop.get_loops_gain());
+		this.delta.setDelta(ntl.getLoopsGain());
 	}
 
 	public void printPaths() {
@@ -39,6 +45,7 @@ public class Graph {
 			}
 			System.out.println();
 		}
+		System.out.println("-------------------------------------------------");
 	}
 
 	public void printloops() {
@@ -49,6 +56,23 @@ public class Graph {
 			}
 			System.out.println();
 		}
-
+		System.out.println("-------------------------------------------------");
 	}
+
+	public void printNonTouchedLoops() {
+		ArrayList<ArrayList<ArrayList<Integer>>> nt = ntl.getNonTouched();
+		for (int i = 0; i < nt.size(); i++) {
+			for (int j = 0; j < nt.get(i).size(); j++) {
+				for (int k = 0; k < nt.get(i).get(j).size(); k++) {
+					System.out.print(nt.get(i).get(j).get(k) + "=>");
+				}
+				System.out.println();
+			}
+			System.out.println();
+			System.out.println();
+			System.out.println();
+		}
+		System.out.println(delta.getDelta());
+	}
+
 }
