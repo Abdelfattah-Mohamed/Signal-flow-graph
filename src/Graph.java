@@ -8,6 +8,7 @@ public class Graph {
 	private Loops loop = new Loops();
 	private Non_Touched_loops ntl = new Non_Touched_loops();
 	private Calc_Delta delta = new Calc_Delta();
+	private Calc_Deltas deltas = new Calc_Deltas();
 
 	public Graph(int nV) {
 		this.graph = new boolean[nV][nV];
@@ -35,6 +36,7 @@ public class Graph {
 		this.loop.madeLoops(this.graph, this.graph.length, this.gain);
 		this.ntl.madeNonTouchedLoops(loop.getLoops(), loop.get_loops_gain());
 		this.delta.setDelta(ntl.getLoopsGain());
+		this.deltas.setDeltas(this.path, this.ntl);
 	}
 
 	public void printPaths() {
@@ -43,6 +45,7 @@ public class Graph {
 			for (int j = 0; j < list.get(i).size(); j++) {
 				System.out.print(list.get(i).get(j) + "=>");
 			}
+			System.out.print(path.get_paths_gain().get(i));
 			System.out.println();
 		}
 		System.out.println("-------------------------------------------------");
@@ -54,6 +57,7 @@ public class Graph {
 			for (int j = 0; j < list.get(i).size(); j++) {
 				System.out.print(list.get(i).get(j) + "=>");
 			}
+			System.out.print(loop.get_loops_gain().get(i));
 			System.out.println();
 		}
 		System.out.println("-------------------------------------------------");
@@ -66,13 +70,15 @@ public class Graph {
 				for (int k = 0; k < nt.get(i).get(j).size(); k++) {
 					System.out.print(nt.get(i).get(j).get(k) + "=>");
 				}
+				System.out.print(ntl.getLoopsGain().get(i).get(j));
 				System.out.println();
 			}
 			System.out.println();
 			System.out.println();
 			System.out.println();
 		}
-		System.out.println(delta.getDelta());
+		System.out.println(this.delta.getDelta());
+		System.out.println(this.deltas.getDeltas());
 	}
 
 }

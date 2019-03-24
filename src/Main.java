@@ -8,20 +8,19 @@ public class Main {
 		graph.addEdge(0, 1, 1);
 		graph.addEdge(1, 2, 1);
 		graph.addEdge(2, 3, 1);
-		graph.addEdge(3, 4, 2);
-		graph.addEdge(4, 5, 1);
+		graph.addEdge(3, 4, 1);
+		graph.addEdge(4, 5, 2);
 		graph.addEdge(5, 6, 3);
-		graph.addEdge(6, 7, 4);
-		graph.addEdge(6, 3, -1);
-		graph.addEdge(4, 1, -5);
-		graph.addEdge(7, 5, -1);
+		graph.addEdge(6, 7, 1);
+		graph.addEdge(4, 7, 4);
+		graph.addEdge(5, 2, -1);
+		graph.addEdge(7, 1, -1);
+		graph.addEdge(7, 4, -2);
 
 		graph.setLoops_and_Pathes();
 
 		graph.printPaths();
 		graph.printloops();
-		graph.printNonTouchedLoops();
-		
+		graph.printNonTouchedLoops();	
 	}
-
 }
