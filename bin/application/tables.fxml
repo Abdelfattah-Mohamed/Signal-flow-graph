@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="486.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="table" prefHeight="436.0" prefWidth="584.0">
+        <columns>
+          <TableColumn editable="false" prefWidth="290.0" sortable="false" text="forward paths">
+               <columns>
+                  <TableColumn fx:id="forward_paths" editable="false" prefWidth="75.0" sortable="false" text="path" />
+                <TableColumn fx:id="forward_paths_gain" editable="false" prefWidth="67.0" sortable="false" text="gain" />
+               </columns></TableColumn>
+            <TableColumn editable="false" minWidth="0.0" prefWidth="262.0" sortable="false" text="loops">
+               <columns>
+                  <TableColumn fx:id="loops" editable="false" prefWidth="75.0" sortable="false" text="loop" />
+                  <TableColumn fx:id="loops_gain" editable="false" prefWidth="73.0" sortable="false" text="gain" />
+               </columns></TableColumn>
+            <TableColumn editable="false" minWidth="0.0" prefWidth="237.0" sortable="false" text="UT_loops">
+               <columns>
+                  <TableColumn fx:id="deltas" editable="false" prefWidth="52.0" sortable="false" text="delta" />
+                  <TableColumn fx:id="deltas_gain" editable="false" prefWidth="65.0" sortable="false" text="gain" />
+               </columns></TableColumn>
+        </columns>
+      </TableView>
+      <Label fx:id="result_label" layoutY="436.0" prefHeight="51.0" prefWidth="494.0" />
+   </children>
+</AnchorPane>

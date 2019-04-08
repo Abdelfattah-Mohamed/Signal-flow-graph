@@ -1,3 +1,4 @@
+package logic;
 import java.util.ArrayList;
 
 public class Non_Touched_loops {
@@ -14,17 +15,17 @@ public class Non_Touched_loops {
 		this.loopsName(loops.size());
 		this.all_loops_gain.add(loopsGain);
 		for (int k = 0; k < nt.size(); k++) {
-			for (int i = 0; i < nt.get(k).size(); i++) {
-				ArrayList<Integer> first = nt.get(k).get(i);
-				ArrayList<Integer> indexFirst = ntIndexes.get(k).get(i);
-				for (int j = this.get_j(first); j < nt.get(0).size(); j++) {
-					ArrayList<Integer> last = nt.get(0).get(j);
-					ArrayList<Integer> indexLast = ntIndexes.get(0).get(j);
+			for (int i = 0; i < nt.get(0).size(); i++) {
+				ArrayList<Integer> first = nt.get(0).get(i);
+				ArrayList<Integer> indexFirst = ntIndexes.get(0).get(i);
+				for (int j = this.get_j(first,k); j < nt.get(k).size(); j++) {
+					ArrayList<Integer> last = nt.get(k).get(j);
+					ArrayList<Integer> indexLast = ntIndexes.get(k).get(j);
 					if (!first.get(0).equals(last.get(0))) {
 						if (this.nonTouched(first, last)) {
 							temp.add(this.add(first, last));
 							tempIndex.add(this.add(indexFirst, indexLast));
-							tempGains.add(all_loops_gain.get(k).get(i) * all_loops_gain.get(0).get(j));
+							tempGains.add(all_loops_gain.get(0).get(i) * all_loops_gain.get(k).get(j));
 						}
 					}
 				}
@@ -53,10 +54,10 @@ public class Non_Touched_loops {
 		this.ntIndexes.add((ArrayList<ArrayList<Integer>>) tempB.clone());
 	}
 
-	private int get_j(ArrayList<Integer> first) {
+	private int get_j(ArrayList<Integer> first,int k) {
 		int i = 0;
-		for (i = 0; i < nt.get(0).size(); i++) {
-			if (nt.get(0).get(i).get(0) > first.get(0)) {
+		for (i = 0; i < nt.get(k).size(); i++) {
+			if (nt.get(k).get(i).get(0) > first.get(0)) {
 				return i;
 			}
 		}

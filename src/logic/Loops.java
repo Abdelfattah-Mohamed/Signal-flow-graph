@@ -1,3 +1,4 @@
+package logic;
 import java.util.ArrayList;
 
 public class Loops {
@@ -5,7 +6,7 @@ public class Loops {
 	private ArrayList<ArrayList<Integer>> loops = new ArrayList<ArrayList<Integer>>();
 	private ArrayList<Integer> loops_gain = new ArrayList<Integer>();
 
-	private void dfs(int from, int distance, boolean[][] graph, ArrayList<Integer> loop, boolean flag, int[][] gain) {
+	private void dfs(int from, int distance, ArrayList<Integer> loop, boolean flag, float[][] gain) {
 		if (from == distance && flag) {
 			this.loops.add((ArrayList<Integer>) loop.clone());
 			this.set_gain(loop, gain);
@@ -14,10 +15,10 @@ public class Loops {
 			return;
 		}
 		flag = true;
-		for (int i = distance; i < graph.length; i++) {
-			if (graph[from][i] && this.contain(loop, i)) {
+		for (int i = distance; i < gain.length; i++) {
+			if (gain[from][i] !=0 && this.contain(loop, i)) {
 				loop.add(i);
-				this.dfs(i, distance, graph, loop, flag, gain);
+				this.dfs(i, distance, loop, flag, gain);
 			}
 
 		}
@@ -34,17 +35,17 @@ public class Loops {
 		return true;
 	}
 
-	public void madeLoops(boolean[][] graph, int distance, int[][] gain) {
+	public void madeLoops( int distance, float[][] gain) {
 		ArrayList<Integer> loop = new ArrayList<Integer>();
 		if (distance > 0) {
-			for (int i = 0; i < graph.length; i++) {
+			for (int i = 0; i < gain.length; i++) {
 				loop.add(i);
-				this.dfs(i, i, graph, loop, false, gain);
+				this.dfs(i, i, loop, false, gain);
 			}
 		}
 	}
 
-	private void set_gain(ArrayList<Integer> loop, int[][] gain) {
+	private void set_gain(ArrayList<Integer> loop, float[][] gain) {
 		int totGain = 1;
 		for (int i = 0; i < loop.size() - 1; i++) {
 			totGain *= gain[loop.get(i)][loop.get(i + 1)];
