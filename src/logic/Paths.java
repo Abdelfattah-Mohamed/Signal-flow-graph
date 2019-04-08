@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Paths {
 
 	private ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
-	private ArrayList<Integer> paths_gain = new ArrayList<Integer>();
+	private ArrayList<Float> paths_gain = new ArrayList<Float>();
 
 	private void dfs(int from, int distance, ArrayList<Integer> path, float[][] gain) {
 		if (from == distance) {
@@ -37,14 +37,14 @@ public class Paths {
 	}
 
 	private void set_gain(ArrayList<Integer> path, float[][] gain) {
-		int totGain = 1;
+		float totGain = 1;
 		for (int i = 0; i < path.size() - 1; i++) {
 			totGain *= gain[path.get(i)][path.get(i + 1)];
 		}
 		this.paths_gain.add(totGain);
 	}
 
-	public ArrayList<Integer> get_paths_gain() {
+	public ArrayList<Float> get_paths_gain() {
 		return this.paths_gain;
 	}
 }

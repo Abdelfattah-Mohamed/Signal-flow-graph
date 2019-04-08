@@ -10,44 +10,106 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import logic.MyGraph;
 
-public class results implements Initializable{
-	
+public class results implements Initializable {
+
 	@FXML
-	private ListView<String> results_listView ;
-	
+	private ListView<String> results_listView;
+
 	@FXML
-	private Label result_label ;
-	
+	private Label result_label;
+
 	private MyGraph graph_obj = input_screen.getGraphobj();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		String result = "";
 		results_listView.getItems().add("Forward paths");
-		//forward pathes "forward path k is x1x2x3... with gain = gain"
-		ArrayList<ArrayList<Integer>> list = graph_obj.getPath().getPaths();
-		
+		// forward pathes "forward path k is x1x2x3... with gain = gain"
+		ArrayList<ArrayList<Integer>> list = this.graph_obj.getPath().getPaths();
+		for (int i = 0; i < list.size(); i++) {
+			result += "M";
+			result += String.valueOf(i + 1);
+			result += " => ";
+			for (int j = 0; j < list.get(i).size(); j++) {
+				result += "X";
+				result += list.get(i).get(j).toString();
+				if (j + 1 < list.get(i).size()) {
+					result += " . ";
+				}
+			}
+			result += " = ";
+			result += this.graph_obj.getPath().get_paths_gain().get(i).toString();
+			this.results_listView.getItems().add(result);
+			result = "";
+		}
+
 		// individual loop k is x1x2.. with gain = gain
-		results_listView.getItems().add("individual loops");
-		
-		// m-non touched loops 
-			//1- x1x2.. and x1x2... 
-		results_listView.getItems().add("m non touched loops");
-		
+		this.results_listView.getItems().add("individual loops");
+		list = this.graph_obj.getLoop().getLoops();
+		for (int i = 0; i < list.size(); i++) {
+			result += "L";
+			result += String.valueOf(i + 1);
+			result += " => ";
+			for (int j = 0; j < list.get(i).size(); j++) {
+				result += "X";
+				result += list.get(i).get(j).toString();
+				if (j + 1 < list.get(i).size()) {
+					result += " . ";
+				}
+			}
+			result += " = ";
+			result += this.graph_obj.getLoop().get_loops_gain().get(i).toString();
+			this.results_listView.getItems().add(result);
+			result = "";
+		}
+		// m-non touched loops
+		// 1- x1x2.. and x1x2...
+
+		ArrayList<ArrayList<ArrayList<Integer>>> nt = this.graph_obj.getNon_Touched_loops().getNonTouched();
+		for (int i = 1; i < nt.size(); i++) {
+			String s = String.valueOf(i + 1);
+			s += " non touched loops";
+			this.results_listView.getItems().add(s);
+			for (int j = 0; j < nt.get(i).size(); j++) {
+				for (int k = 0; k < nt.get(i).get(j).size(); k++) {
+					result += "X";
+					result += nt.get(i).get(j).get(k).toString();
+					if (k + 1 < nt.get(i).get(j).size()) {
+						result += " . ";
+					}
+				}
+				result += " = ";
+				result += this.graph_obj.getNon_Touched_loops().getLoopsGain().get(i).get(j).toString();
+				this.results_listView.getItems().add(result);
+				result = "";
+			}
+		}
 		// delta = ()
-		results_listView.getItems().add("delta");
-		
-		
+		this.results_listView.getItems().add("delta");
+		float denominator = this.graph_obj.getDelta().getDelta();
+		this.results_listView.getItems().add("Delta = " + String.valueOf(denominator));
+
 		// delta m = ()
-		results_listView.getItems().add("deltas");
-		
-		
-		// final result 
-		results_listView.getItems().add("result");
-		
-		
+		this.results_listView.getItems().add("deltas");
+		ArrayList<Float> dList = this.graph_obj.getDeltas().getDeltas();
+		for (int i = 0; i < dList.size(); i++) {
+			result = "Delta ";
+			result += String.valueOf(i + 1) + " = ";
+			result += String.valueOf(dList.get(i));
+			this.results_listView.getItems().add(result);
+			result = "";
+		}
+
+		// final result
+		this.results_listView.getItems().add("result");
+		float fResult = 0;
+		float Numerator = 0;
+		ArrayList<Float> gains = this.graph_obj.getPath().get_paths_gain();
+		for (int i = 0; i < gains.size(); i++) {
+			Numerator += gains.get(i) * dList.get(i);
+		}
+		fResult = Numerator / denominator;
+		this.results_listView.getItems().add(" = " + String.valueOf(fResult));
 	}
-	
-	
-	
 
 }

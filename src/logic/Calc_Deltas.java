@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class Calc_Deltas {
 
 	private ArrayList<ArrayList<ArrayList<Integer>>> ntPL = new ArrayList<ArrayList<ArrayList<Integer>>>();
-	private ArrayList<Integer> ntPLGain = new ArrayList<Integer>();
+	private ArrayList<Float> ntPLGain = new ArrayList<Float>();
 
 	public void setDeltas(Paths path, Non_Touched_loops ntl) {
 		for (int i = 0; i < path.getPaths().size(); i++) {
-			ArrayList<ArrayList<Integer>> tempGain_2 = new ArrayList<ArrayList<Integer>>();
+			ArrayList<ArrayList<Float>> tempGain_2 = new ArrayList<ArrayList<Float>>();
 			ArrayList<Integer> tempPath = path.getPaths().get(i);
 			ArrayList<Integer> tempSummation = new ArrayList<Integer>();
 			for (int j = 0; j < ntl.getNonTouched().size(); j++) {
@@ -25,7 +25,7 @@ public class Calc_Deltas {
 				}
 				tempSummation.add(sum);
 				sum = 0;
-				tempGain_2.add((ArrayList<Integer>) tempGain.clone());
+				tempGain_2.add((ArrayList<Float>) tempGain.clone());
 			}
 			this.ntPLGain.add(this.calcDeltas(tempSummation));
 			tempSummation.clear();
@@ -50,12 +50,12 @@ public class Calc_Deltas {
 		return this.ntPL;
 	}
 
-	public ArrayList<Integer> getDeltas() {
+	public ArrayList<Float> getDeltas() {
 		return this.ntPLGain;
 	}
 
-	private int calcDeltas(ArrayList<Integer> tempSummation) {
-		int delta = 1;
+	private float calcDeltas(ArrayList<Integer> tempSummation) {
+		float delta = 1;
 		for (int i = 0; i < tempSummation.size(); i++) {
 			if (i % 2 == 0) {
 				delta -= tempSummation.get(i);

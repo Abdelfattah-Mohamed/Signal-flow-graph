@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class Calc_Delta {
 
-	private int delta = 1;
+	private float delta = 1;
 
-	public int getDelta() {
+	public float getDelta() {
 		return delta;
 	}
 

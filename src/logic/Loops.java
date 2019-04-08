@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Loops {
 
 	private ArrayList<ArrayList<Integer>> loops = new ArrayList<ArrayList<Integer>>();
-	private ArrayList<Integer> loops_gain = new ArrayList<Integer>();
+	private ArrayList<Float> loops_gain = new ArrayList<Float>();
 
 	private void dfs(int from, int distance, ArrayList<Integer> loop, boolean flag, float[][] gain) {
 		if (from == distance && flag) {
@@ -46,7 +46,7 @@ public class Loops {
 	}
 
 	private void set_gain(ArrayList<Integer> loop, float[][] gain) {
-		int totGain = 1;
+		float totGain = 1;
 		for (int i = 0; i < loop.size() - 1; i++) {
 			totGain *= gain[loop.get(i)][loop.get(i + 1)];
 		}
@@ -57,7 +57,7 @@ public class Loops {
 		return this.loops;
 	}
 
-	public ArrayList<Integer> get_loops_gain() {
+	public ArrayList<Float> get_loops_gain() {
 		return this.loops_gain;
 	}
 }

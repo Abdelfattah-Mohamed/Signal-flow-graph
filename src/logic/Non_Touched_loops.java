@@ -5,12 +5,12 @@ public class Non_Touched_loops {
 
 	private ArrayList<ArrayList<ArrayList<Integer>>> nt = new ArrayList<ArrayList<ArrayList<Integer>>>();
 	private ArrayList<ArrayList<ArrayList<Integer>>> ntIndexes = new ArrayList<ArrayList<ArrayList<Integer>>>();
-	private ArrayList<ArrayList<Integer>> all_loops_gain = new ArrayList<ArrayList<Integer>>();
+	private ArrayList<ArrayList<Float>> all_loops_gain = new ArrayList<ArrayList<Float>>();
 
-	public void madeNonTouchedLoops(ArrayList<ArrayList<Integer>> loops, ArrayList<Integer> loopsGain) {
+	public void madeNonTouchedLoops(ArrayList<ArrayList<Integer>> loops, ArrayList<Float> loopsGain) {
 		ArrayList<ArrayList<Integer>> temp = new ArrayList<ArrayList<Integer>>();
 		ArrayList<ArrayList<Integer>> tempIndex = new ArrayList<ArrayList<Integer>>();
-		ArrayList<Integer> tempGains = new ArrayList<Integer>();
+		ArrayList<Float> tempGains = new ArrayList<Float>();
 		this.nt.add(loops);
 		this.loopsName(loops.size());
 		this.all_loops_gain.add(loopsGain);
@@ -33,7 +33,7 @@ public class Non_Touched_loops {
 			if (!temp.isEmpty()) {
 				this.nt.add((ArrayList<ArrayList<Integer>>) temp.clone());
 				this.ntIndexes.add((ArrayList<ArrayList<Integer>>) tempIndex.clone());
-				this.all_loops_gain.add((ArrayList<Integer>) tempGains.clone());
+				this.all_loops_gain.add((ArrayList<Float>) tempGains.clone());
 				temp.clear();
 				tempIndex.clear();
 				tempGains.clear();
@@ -93,7 +93,7 @@ public class Non_Touched_loops {
 		return this.nt;
 	}
 
-	public ArrayList<ArrayList<Integer>> getLoopsGain() {
+	public ArrayList<ArrayList<Float>> getLoopsGain() {
 		return this.all_loops_gain;
 	}
 
