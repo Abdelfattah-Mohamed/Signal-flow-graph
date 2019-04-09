@@ -14,7 +14,7 @@ public class Calc_Deltas {
 			ArrayList<Integer> tempPath = path.getPaths().get(i);
 			ArrayList<Integer> tempSummation = new ArrayList<Integer>();
 			for (int j = 0; j < ntl.getNonTouched().size(); j++) {
-				ArrayList<Integer> tempGain = new ArrayList<Integer>();
+				ArrayList<Float> tempGain = new ArrayList<Float>();
 				int sum = 0;
 				for (int k = 0; k < ntl.getNonTouched().get(j).size(); k++) {
 					ArrayList<Integer> tempLoop = ntl.getNonTouched().get(j).get(k);

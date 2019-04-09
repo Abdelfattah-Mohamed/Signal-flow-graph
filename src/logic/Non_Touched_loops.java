@@ -97,4 +97,8 @@ public class Non_Touched_loops {
 		return this.all_loops_gain;
 	}
 
+	
+	public ArrayList<ArrayList<ArrayList<Integer>>> getNonTouchedLoopsName() {
+		return this.ntIndexes;
+	}
 }

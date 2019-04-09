@@ -32,7 +32,7 @@ public class results implements Initializable {
 			result += " => ";
 			for (int j = 0; j < list.get(i).size(); j++) {
 				result += "X";
-				result += list.get(i).get(j).toString();
+				result += String.valueOf((list.get(i).get(j) + 1));
 				if (j + 1 < list.get(i).size()) {
 					result += " . ";
 				}
@@ -52,7 +52,7 @@ public class results implements Initializable {
 			result += " => ";
 			for (int j = 0; j < list.get(i).size(); j++) {
 				result += "X";
-				result += list.get(i).get(j).toString();
+				result += String.valueOf((list.get(i).get(j) + 1));
 				if (j + 1 < list.get(i).size()) {
 					result += " . ";
 				}
@@ -66,14 +66,27 @@ public class results implements Initializable {
 		// 1- x1x2.. and x1x2...
 
 		ArrayList<ArrayList<ArrayList<Integer>>> nt = this.graph_obj.getNon_Touched_loops().getNonTouched();
+		ArrayList<ArrayList<ArrayList<Integer>>> ntIndexes = this.graph_obj.getNon_Touched_loops().getNonTouchedLoopsName();
 		for (int i = 1; i < nt.size(); i++) {
 			String s = String.valueOf(i + 1);
 			s += " non touched loops";
 			this.results_listView.getItems().add(s);
 			for (int j = 0; j < nt.get(i).size(); j++) {
+				
+				for (int k = 0; k < ntIndexes.get(i).get(j).size(); k++) {
+					result += "L";
+					result += String.valueOf(ntIndexes.get(i).get(j).get(k) + 1);
+					if (k + 1 < ntIndexes.get(i).get(j).size()) {
+						result += " . ";
+					}
+				}
+				result += " => ";
+				this.results_listView.getItems().add(result);
+				result = "";
+				
 				for (int k = 0; k < nt.get(i).get(j).size(); k++) {
 					result += "X";
-					result += nt.get(i).get(j).get(k).toString();
+					result += String.valueOf(nt.get(i).get(j).get(k) + 1);
 					if (k + 1 < nt.get(i).get(j).size()) {
 						result += " . ";
 					}

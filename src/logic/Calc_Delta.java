@@ -9,7 +9,7 @@ public class Calc_Delta {
 		return delta;
 	}
 
-	public void setDelta(ArrayList<ArrayList<Integer>> loopsGain) {
+	public void setDelta(ArrayList<ArrayList<Float>> loopsGain) {
 		int sum = 0;
 		for (int i = 0; i < loopsGain.size(); i++) {
 			for (int j = 0; j < loopsGain.get(i).size(); j++) {

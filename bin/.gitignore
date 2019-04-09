@@ -1,8 +1,2 @@
-/Graph.class
-/Main.class
-/Paths.class
-/loops.class
-/Loops.class
-/Non_Touched_loops.class
-/Calc_Delta.class
-/Calc_Deltas.class
+/logic/
+/application/

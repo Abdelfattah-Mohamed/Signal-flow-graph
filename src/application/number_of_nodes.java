@@ -54,6 +54,10 @@ public class number_of_nodes {
 			num_of_nodes= Integer.parseInt(value);
 			if(num_of_nodes == 1 ) {
 				Alert alert = new Alert(AlertType.ERROR, "number of nodes must be at lest 2 ", ButtonType.OK);
+				alert.showAndWait();
+				if(alert.getResult() == ButtonType.OK) {
+					nodes_textField.setText("");
+				}
 			}else {
 			mainBorderPane = Main.getBorderPane();
 			Parent newRoot = FXMLLoader.load(getClass().getResource("/application/Branches_screen.fxml"));

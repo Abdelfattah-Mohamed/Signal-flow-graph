@@ -145,12 +145,15 @@ public class input_screen implements Initializable{
 		float gain = Float.parseFloat(mat.group(3));
 		graph[row-1][col-1] = gain;
 		}
-		Parent rootFX = FXMLLoader.load(getClass().getResource("/application/tables.fxml"));
+		
+		graph_obj = new MyGraph(num_of_nodes,graph);
+		
+		graph_obj.setLoops_and_Pathes();
+		
+		Parent rootFX = FXMLLoader.load(getClass().getResource("/application/results.fxml"));
 		BorderPane main_borderPane = Main.getBorderPane();
 		main_borderPane.setCenter(rootFX);
-		MyGraph mgp = new MyGraph(num_of_nodes,graph);
-		graph_obj=mgp;
-		mgp.setLoops_and_Pathes();
+		
 		The_Graph thegraph = new The_Graph();
 		thegraph.createGraphNodes(num_of_nodes);
 		thegraph.createGraphBranches(graph, num_of_nodes);
